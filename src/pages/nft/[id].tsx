@@ -12,6 +12,7 @@ import { useEffect, useState } from 'react';
 import { BigNumber } from 'ethers';
 
 import toast, { Toaster } from 'react-hot-toast';
+import Link from 'next/link';
 
 interface Props {
   collection: Collection;
@@ -154,7 +155,7 @@ const NFTDropPage = ({ collection }: Props) => {
 
         <div className="flex flex-1 px-12 py-4 flex-col lg:col-span-4 bg-gradient-to-br from-gray-800 to-teal-900 lg:justify-center">
           {/* Header */}
-          <div className={'lg:hidden'}>
+          <Link className={'lg:hidden'} href={'/'}>
             <header className="flex items-center justify-between">
               <h1 className="text-xl font-thin dark:text-white w-52 cursor-pointer sm:w-80">
                 <span className="font-extrabold underline decoration-teal-300 dark:text-teal-50">
@@ -182,7 +183,7 @@ const NFTDropPage = ({ collection }: Props) => {
               </div>
             </header>
             <hr className="border-gray-300 dark:border-gray-700 w-full my-4" />
-          </div>
+          </Link>
           <div className="flex flex-col items-center justify-center py-2">
             <div className="bg-gradient-to-br from-white to-teal-100 p-2 rounded-xl">
               <img
@@ -204,7 +205,7 @@ const NFTDropPage = ({ collection }: Props) => {
 
         {/* Right Side */}
         <div className="flex flex-1 p-12 flex-col lg:col-span-8">
-          <div className="invisible lg:visible ">
+          <Link className={'invisible lg:visible'} href={'/'}>
             <header className="flex items-center justify-between">
               <h1 className="text-xl font-thin dark:text-white w-52 cursor-pointer sm:w-80">
                 <span className="font-extrabold underline decoration-teal-300 dark:text-teal-50">
@@ -232,7 +233,7 @@ const NFTDropPage = ({ collection }: Props) => {
               </div>
             </header>
             <hr className="border-gray-300 dark:border-gray-700 w-full my-4" />
-          </div>
+          </Link>
           <div className="mt-10 flex flex-1 flex-col items-center space-y-6 text-center lg:justify-center lg:space-y-0">
             <img
               className="w-80 object-cover pb-10 "

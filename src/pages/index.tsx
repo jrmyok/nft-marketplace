@@ -3,6 +3,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import { sanityClient, urlFor } from '../lib/utils/sanity';
 import { Collection } from '../lib/typings';
+import Link from 'next/link';
 
 interface Props {
   collections: Collection[];
@@ -73,27 +74,29 @@ const Home = ({ collections }: Props) => {
         <div>
           {collections &&
             collections.map((collection) => (
-              <div
+              <Link
                 key={collection._id}
-                className="flex flex-col cursor-pointer items-center transition-all duration-200 hover:scale-105"
+                href={`/nft/${collection.slug.current.toString()}`}
               >
-                <div className="">
-                  <img
-                    className="h-96 w-60 rounded-2xl object-cover"
-                    src={urlFor(collection.mainImage).url()}
-                    alt=""
-                  />
-                </div>
+                <div className="flex flex-col cursor-pointer items-center transition-all duration-200 hover:scale-105">
+                  <div className="">
+                    <img
+                      className="h-96 w-60 rounded-2xl object-cover"
+                      src={urlFor(collection.mainImage).url()}
+                      alt=""
+                    />
+                  </div>
 
-                <div>
-                  <h2 className="text-3xl dark:text-white">
-                    {collection.title}
-                  </h2>
-                  <p className="mt-2 text-sm text-gray-400 dark:text-white">
-                    {collection.description}
-                  </p>
+                  <div>
+                    <h2 className="text-3xl dark:text-white">
+                      {collection.title}
+                    </h2>
+                    <p className="mt-2 text-sm text-gray-400 dark:text-white">
+                      {collection.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </Link>
             ))}
         </div>
       </main>
