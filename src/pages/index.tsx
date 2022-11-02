@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { sanityClient, urlFor } from '../lib/utils/sanity';
 import { Collection } from '../lib/typings';
 import Link from 'next/link';
+import Header from '../components/Header';
 
 interface Props {
   collections: Collection[];
@@ -63,12 +64,7 @@ const Home = ({ collections }: Props) => {
         <link rel="icon" href="/public/favicon.ico" />
       </Head>
 
-      <h1 className="text-4xl font-bold font-extralight dark:text-gray-200">
-        <span className="font-extrabold underline decoration-teal-300 dark:text-teal-50">
-          Lyra
-        </span>{' '}
-        NFT Market Place
-      </h1>
+      <Header />
 
       <main className={'my-auto h-full'}>
         <div

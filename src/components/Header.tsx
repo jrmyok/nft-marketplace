@@ -1,13 +1,15 @@
 import Link from 'next/link';
 import { useAddress, useDisconnect, useMetamask } from '@thirdweb-dev/react';
+import { useRouter } from 'next/router';
 
-const Header = () => {
+const Header = ({ className }: { className: string }) => {
   const connectWithMetaMask = useMetamask();
   const address = useAddress();
   const disconnect = useDisconnect();
+  const router = useRouter();
 
   return (
-    <Link className={'lg:hidden'} href={'/'}>
+    <Link className={`${className}`} href={'/'}>
       <header className="flex items-center justify-between">
         <h1 className="text-xl font-thin dark:text-white w-52 cursor-pointer sm:w-80">
           <span className="font-extrabold underline decoration-teal-300 dark:text-teal-50">
