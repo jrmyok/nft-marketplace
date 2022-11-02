@@ -57,7 +57,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
 };
 const Home = ({ collections }: Props) => {
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center py-2 dark:bg-gray-800">
+    <div className="flex h-full min-h-screen flex-col dark:bg-gray-800 p-6">
       <Head>
         <title>Lyra NFT Market Place</title>
         <link rel="icon" href="/public/favicon.ico" />
@@ -70,8 +70,10 @@ const Home = ({ collections }: Props) => {
         NFT Market Place
       </h1>
 
-      <main>
-        <div>
+      <main className={'my-auto h-full'}>
+        <div
+          className={'flex flex-col items-center justify-center py-2 my-auto'}
+        >
           {collections &&
             collections.map((collection) => (
               <Link
@@ -87,7 +89,7 @@ const Home = ({ collections }: Props) => {
                     />
                   </div>
 
-                  <div>
+                  <div className={'flex flex-col justify-center items-center'}>
                     <h2 className="text-3xl dark:text-white">
                       {collection.title}
                     </h2>

@@ -13,6 +13,7 @@ import { BigNumber } from 'ethers';
 
 import toast, { Toaster } from 'react-hot-toast';
 import Link from 'next/link';
+import Header from '../../components/Header';
 
 interface Props {
   collection: Collection;
@@ -155,35 +156,9 @@ const NFTDropPage = ({ collection }: Props) => {
 
         <div className="flex flex-1 px-12 py-4 flex-col lg:col-span-4 bg-gradient-to-br from-gray-800 to-teal-900 lg:justify-center">
           {/* Header */}
-          <Link className={'lg:hidden'} href={'/'}>
-            <header className="flex items-center justify-between">
-              <h1 className="text-xl font-thin dark:text-white w-52 cursor-pointer sm:w-80">
-                <span className="font-extrabold underline decoration-teal-300 dark:text-teal-50">
-                  Lyra
-                </span>{' '}
-                NFT Market Place
-              </h1>
-              <div className={'flex items-center'}>
-                <button
-                  className="flex rounded py-1 px-4 text-teal-300 text-xs font-bold lg:px-3 lg:py-1 lg:text-base border-teal-300 border-2 hover:bg-teal-300 hover:text-white transition-all duration-200"
-                  onClick={address ? disconnect : connectWithMetaMask}
-                >
-                  {address ? (
-                    <p className={'dark:text-white'}>
-                      Disconnect:
-                      <span className={'dark:text-teal-200 ml-1'}>
-                        {address.substring(0, 3)}..
-                        {address.substring(address.length - 3)}
-                      </span>
-                    </p>
-                  ) : (
-                    'Sign in'
-                  )}
-                </button>
-              </div>
-            </header>
-            <hr className="border-gray-300 dark:border-gray-700 w-full my-4" />
-          </Link>
+          <Header />
+
+          {/* Left */}
           <div className="flex flex-col items-center justify-center py-2">
             <div className="bg-gradient-to-br from-white to-teal-100 p-2 rounded-xl">
               <img
