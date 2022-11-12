@@ -1,0 +1,36 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:postgres@localhost:5432/postgres"
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  walletId     String
+  expires      DateTime
+  wallet       Wallet   @relation(fields: [walletId], references: [id])
+}
+
+model Wallet {
+  id        String    @id @default(cuid())
+  address   String    @unique
+  createdAt DateTime  @default(now())
+  nfts       Nft[]
+  Session   Session[]
+}
+
+model Nft {
+  id       String @id @default(cuid())
+  address  String @unique
+  walletId String
+  wallet   Wallet @relation(fields: [walletId], references: [id], onDelete: Cascade)
+  tokenUri String
+  name     String
+}
