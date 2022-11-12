@@ -1,11 +1,13 @@
 import { MediaRenderer } from '@thirdweb-dev/react';
 import Card from './Card';
+import { BigNumber } from 'ethers';
 
 interface Props {
   name: string;
   tokenUri: string;
-  price?: number;
+  price?: number | BigNumber | string;
   currency?: string;
+  description?: string;
 }
 
 const NftCard = (nft: Props) => {
@@ -21,12 +23,20 @@ const NftCard = (nft: Props) => {
         }
       />
       <hr className={'my-4'} />
-      <h1>{nft.name}</h1>
+      <div>
+        <h1>
+          <span className={'font-bold'}>{nft.name} </span> |{' '}
+          <span>{nft.description}</span>
+        </h1>
+      </div>
 
       {nft.price && (
         <div className={'flex justify-between items-center mt-4'}>
-          <h1 className={'text-xl font-bold'}>{nft.price}</h1>
-          <h1 className={'text-xl font-bold'}>{nft.currency}</h1>
+          <h1>
+            <span className={'font-bold'}> Price: </span>
+            {nft.price as unknown as string}
+            <span> {nft.currency}</span>
+          </h1>
         </div>
       )}
     </Card>
