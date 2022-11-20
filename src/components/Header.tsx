@@ -45,25 +45,27 @@ const Header = ({ className }: { className?: string }) => {
   };
 
   return (
-    <Link className={`${className}`} href={'/'}>
-      <header className="flex items-center justify-between">
-        <h1 className="text-xl font-thin dark:text-white w-52 cursor-pointer sm:w-80">
-          <span className="font-extrabold underline decoration-teal-300 dark:text-teal-50">
-            Lyra
-          </span>{' '}
-          NFT Market Place
-        </h1>
+    <div className={`${className}`}>
+      <header className="flex items-center justify-between flex flex-col md:flex-row gap-y-2 md:gap-y-0">
+        <Link href={'/'}>
+          <h1 className="text-xl font-thin dark:text-white w-52 cursor-pointer sm:w-80">
+            <span className="font-extrabold underline decoration-teal-300 dark:text-teal-50">
+              Lyra
+            </span>{' '}
+            NFT Market Place
+          </h1>
+        </Link>
         <div className={'flex items-center'}>
           {address ? (
             <>
               <button
-                className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full"
+                className="bg-black hover:bg-teal-700 text-xs md:text-sm text-white font-bold py-2 px-4 rounded-full"
                 onClick={disconnect}
               >
                 <p className={'dark:text-white'}>
-                  Disconnect:
+                  Disconnect
                   <span className={'dark:text-teal-200 ml-1'}>
-                    {address.substring(0, 3)}..
+                    : {address.substring(0, 3)}..
                     {address.substring(address.length - 3)}
                   </span>
                 </p>
@@ -71,13 +73,12 @@ const Header = ({ className }: { className?: string }) => {
             </>
           ) : (
             <button
-              className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full"
+              className="bg-black hover:bg-teal-700 text-white text-xs md:text-sm font-bold py-2 px-4 rounded-full"
               onClick={connectWithMetamask}
             >
               Connect Wallet
             </button>
           )}
-          <div className={'p-2'} />
 
           {address ? (
             <>
@@ -85,7 +86,7 @@ const Header = ({ className }: { className?: string }) => {
                 <>
                   <button
                     onClick={handleLogout}
-                    className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full mr-4"
+                    className="bg-black hover:bg-teal-700 text-white font-bold text-xs md:text-sm py-2 px-4 rounded-full ml-2 mr-2"
                   >
                     Logout
                   </button>
@@ -93,7 +94,7 @@ const Header = ({ className }: { className?: string }) => {
                   {router.pathname === '/profile' && (
                     <Link
                       href={'/'}
-                      className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full"
+                      className="bg-black hover:bg-teal-700 text-white text-xs md:text-sm font-bold py-2 px-4 rounded-full"
                     >
                       Home
                     </Link>
@@ -102,16 +103,16 @@ const Header = ({ className }: { className?: string }) => {
                   {router.pathname !== '/profile' && (
                     <Link
                       href={'/profile'}
-                      className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 mr-4 rounded-full"
+                      className="bg-black hover:bg-teal-700 text-white text-xs md:text-sm font-bold py-2 px-4 mr-2 rounded-full"
                     >
-                      My Profile
+                      Profile
                     </Link>
                   )}
                 </>
               ) : (
                 <button
                   onClick={() => login()}
-                  className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full"
+                  className="bg-black hover:bg-teal-700 text-white font-bold text-xs md:text-sm py-2 px-4 rounded-full"
                 >
                   Login with Wallet
                 </button>
@@ -124,7 +125,7 @@ const Header = ({ className }: { className?: string }) => {
       </header>
 
       <hr className="border-gray-300 dark:border-gray-700 w-full my-4" />
-    </Link>
+    </div>
   );
 };
 

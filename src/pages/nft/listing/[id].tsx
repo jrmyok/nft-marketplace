@@ -36,14 +36,6 @@ const Listing = ({ id, marketPlaceContractAddress }: Props) => {
 
   const { user: thirdwebUser } = useUser();
 
-  useEffect(() => {
-    if (thirdwebUser) {
-      requests.post('/api/wallet', {
-        address: thirdwebUser.address,
-      });
-    }
-  }, [thirdwebUser]);
-
   const buyoutListing = async () => {
     try {
       await contract?.buyoutListing(BigNumber.from(id), 1);
@@ -60,7 +52,6 @@ const Listing = ({ id, marketPlaceContractAddress }: Props) => {
       >
         {isLoading && <div>Loading...</div>}
 
-        {error && <div className="text-red-500">error</div>}
         {nft && (
           <div className="flex flex-col items-center justify-center w-full h-full space-y-6">
             <NftCard
@@ -73,7 +64,7 @@ const Listing = ({ id, marketPlaceContractAddress }: Props) => {
             {/* check if logged in and if logged in make button buy nft */}
             {thirdwebUser ? (
               <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                className="bg-teal-500 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded"
                 onClick={buyoutListing}
               >
                 Buy NFT

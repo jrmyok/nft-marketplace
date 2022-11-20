@@ -4,12 +4,13 @@ import { ChainId, ThirdwebProvider } from '@thirdweb-dev/react';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 function MyApp({ Component, pageProps: { ...pageProps } }: AppProps<{}>) {
+  const currentPage = Component.name;
   return (
     <ThirdwebProvider
       desiredChainId={ChainId.Goerli}
       authConfig={{
         authUrl: '/api/auth',
-        domain: 'localhost:3002',
+        domain: 'localhost:3000',
       }}
     >
       <Head>
