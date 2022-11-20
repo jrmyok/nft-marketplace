@@ -131,7 +131,7 @@ const Home = ({ collections, marketPlaceContractAddress }: Props) => {
                   collections.length < 4 &&
                   [...Array(n)].map((_, i) => (
                     <div
-                      key={i + n + 1}
+                      key={i + n + 1000}
                       className="flex w-60 flex-col cursor-pointer items-center transition-all duration-200 hover:scale-105"
                     >
                       <div className="h-96 w-60 rounded-2xl object-cover bg-gray-300"></div>
@@ -163,7 +163,7 @@ const Home = ({ collections, marketPlaceContractAddress }: Props) => {
                     nfts.map((nft, n: number) => {
                       return (
                         <div
-                          key={n + 100}
+                          key={n + 1020}
                           className="flex w-60 flex-col cursor-pointer items-center transition-all duration-200 hover:scale-105"
                         >
                           <Link key={n} href={`/nft/listing/${nft.id}`}>
@@ -188,7 +188,7 @@ const Home = ({ collections, marketPlaceContractAddress }: Props) => {
                     isLoading &&
                     [...Array(n)].map((_, i) => (
                       <div
-                        key={n}
+                        key={i + n + 2000}
                         className="flex w-60 flex-col cursor-pointer items-center transition-all duration-200 hover:scale-105"
                       >
                         <div className="h-96 w-60 rounded-2xl object-cover bg-gray-300">
@@ -203,7 +203,7 @@ const Home = ({ collections, marketPlaceContractAddress }: Props) => {
                     nfts.length < 4 &&
                     [...Array(n)].map((_, i) => (
                       <div
-                        key={i + n + 1}
+                        key={i + n + 3000}
                         className="flex w-60 flex-col cursor-pointer items-center transition-all duration-200 hover:scale-105"
                       >
                         <div className="h-96 w-60 rounded-2xl object-cover bg-gray-300"></div>
