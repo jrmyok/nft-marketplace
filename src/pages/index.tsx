@@ -103,11 +103,13 @@ const Home = ({ collections, marketPlaceContractAddress }: Props) => {
                       className={'w-full'}
                     >
                       <div className="flex w-60 flex-col cursor-pointer items-center transition-all duration-200 hover:scale-105">
-                        <img
-                          className="h-96 w-60 rounded-2xl object-cover"
-                          src={urlFor(collection.mainImage).url()}
-                          alt=""
-                        />
+                        <div className={'h-96 w-60'}>
+                          <img
+                            className="h-full rounded-2xl object-cover"
+                            src={urlFor(collection.mainImage).url()}
+                            alt=""
+                          />
+                        </div>
 
                         <div
                           className={
@@ -160,19 +162,25 @@ const Home = ({ collections, marketPlaceContractAddress }: Props) => {
                   {nfts &&
                     nfts.map((nft, n: number) => {
                       return (
-                        <Link key={n} href={`/nft/listing/${nft.id}`}>
-                          <NftCard
-                            name={nft.asset.name as string}
-                            tokenUri={nft.asset.image as string}
-                            price={
-                              nft.buyoutCurrencyValuePerToken?.displayValue || 0
-                            }
-                            description={nft.asset.description as string}
-                            currency={
-                              nft.buyoutCurrencyValuePerToken.symbol as string
-                            }
-                          />
-                        </Link>
+                        <div
+                          key={n + 100}
+                          className="flex w-60 flex-col cursor-pointer items-center transition-all duration-200 hover:scale-105"
+                        >
+                          <Link key={n} href={`/nft/listing/${nft.id}`}>
+                            <NftCard
+                              name={nft.asset.name as string}
+                              tokenUri={nft.asset.image as string}
+                              price={
+                                nft.buyoutCurrencyValuePerToken?.displayValue ||
+                                0
+                              }
+                              description={nft.asset.description as string}
+                              currency={
+                                nft.buyoutCurrencyValuePerToken.symbol as string
+                              }
+                            />
+                          </Link>
+                        </div>
                       );
                     })}
 
