@@ -79,11 +79,7 @@ const Home = ({ collections, marketPlaceContractAddress }: Props) => {
   let n = 5;
 
   const { contract } = useContract(marketPlaceContractAddress, 'marketplace');
-  console.log(marketPlaceContractAddress);
-  console.log(contract);
-
   const { data: nfts, isLoading } = useActiveListings(contract);
-  console.log(nfts);
 
   return (
     <div className="flex h-full min-h-screen flex-col dark:bg-gray-800 p-6">
@@ -164,7 +160,7 @@ const Home = ({ collections, marketPlaceContractAddress }: Props) => {
                   {nfts &&
                     nfts.map((nft, n: number) => {
                       return (
-                        <a key={n}>
+                        <Link key={n} href={`/nft/listing/${nft.id}`}>
                           <NftCard
                             name={nft.asset.name as string}
                             tokenUri={nft.asset.image as string}
@@ -176,7 +172,7 @@ const Home = ({ collections, marketPlaceContractAddress }: Props) => {
                               nft.buyoutCurrencyValuePerToken.symbol as string
                             }
                           />
-                        </a>
+                        </Link>
                       );
                     })}
 

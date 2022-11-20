@@ -14,8 +14,10 @@ import swr from 'swr';
 import { fetcher, requests } from '../lib/utils/requests';
 import { useEffect } from 'react';
 import { useQueryUser } from '../lib/hooks/useQueryWallet';
+import { useRouter } from 'next/router';
 
 const Header = ({ className }: { className?: string }) => {
+  const router = useRouter();
   const address = useAddress();
   const disconnect = useDisconnect();
   const connectWithMetamask = useMetamask();
@@ -53,21 +55,23 @@ const Header = ({ className }: { className?: string }) => {
         </h1>
         <div className={'flex items-center'}>
           {address ? (
-            <button
-              className="flex rounded py-1 px-4 text-teal-300 text-xs font-bold lg:px-3 lg:py-1 lg:text-base border-teal-300 border-2 hover:bg-teal-300 hover:text-white transition-all duration-200"
-              onClick={disconnect}
-            >
-              <p className={'dark:text-white'}>
-                Disconnect:
-                <span className={'dark:text-teal-200 ml-1'}>
-                  {address.substring(0, 3)}..
-                  {address.substring(address.length - 3)}
-                </span>
-              </p>
-            </button>
+            <>
+              <button
+                className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full"
+                onClick={disconnect}
+              >
+                <p className={'dark:text-white'}>
+                  Disconnect:
+                  <span className={'dark:text-teal-200 ml-1'}>
+                    {address.substring(0, 3)}..
+                    {address.substring(address.length - 3)}
+                  </span>
+                </p>
+              </button>
+            </>
           ) : (
             <button
-              className="flex rounded py-1 px-4 text-teal-300 text-xs font-bold lg:px-3 lg:py-1 lg:text-base border-teal-300 border-2 hover:bg-teal-300 hover:text-white transition-all duration-200"
+              className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full"
               onClick={connectWithMetamask}
             >
               Connect Wallet
@@ -78,16 +82,36 @@ const Header = ({ className }: { className?: string }) => {
           {address ? (
             <>
               {thirdwebUser ? (
-                <button
-                  onClick={handleLogout}
-                  className="flex rounded py-1 px-4 text-teal-300 text-xs font-bold lg:px-3 lg:py-1 lg:text-base border-teal-300 border-2 hover:bg-teal-300 hover:text-white transition-all duration-200"
-                >
-                  Logout
-                </button>
+                <>
+                  <button
+                    onClick={handleLogout}
+                    className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full mr-4"
+                  >
+                    Logout
+                  </button>
+
+                  {router.pathname === '/profile' && (
+                    <Link
+                      href={'/'}
+                      className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full"
+                    >
+                      Home
+                    </Link>
+                  )}
+
+                  {router.pathname !== '/profile' && (
+                    <Link
+                      href={'/profile'}
+                      className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 mr-4 rounded-full"
+                    >
+                      My Profile
+                    </Link>
+                  )}
+                </>
               ) : (
                 <button
                   onClick={() => login()}
-                  className="flex rounded py-1 px-4 text-teal-300 text-xs font-bold lg:px-3 lg:py-1 lg:text-base border-teal-300 border-2 hover:bg-teal-300 hover:text-white transition-all duration-200"
+                  className="bg-black hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-full"
                 >
                   Login with Wallet
                 </button>
